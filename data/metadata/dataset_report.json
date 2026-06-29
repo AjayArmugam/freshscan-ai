@@ -1,0 +1,10 @@
+{
+    "total_images": 30357,
+    "total_classes": 18,
+    "min_width": 144,
+    "max_width": 862,
+    "min_height": 116,
+    "max_height": 518,
+    "average_width": 432.11213229238723,
+    "average_height": 364.22531870738214
+}

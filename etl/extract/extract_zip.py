@@ -1,36 +1,43 @@
 from pathlib import Path
 import zipfile
 
-BASE_DIR = Path(__file__).resolve().parents[2]
+from etl.logger import logger
 
+BASE_DIR = Path(__file__).resolve().parents[2]
 RAW_DATA = BASE_DIR / "data" / "raw"
 
 
 def extract_all_zip_files():
     """
-    Extract all zip files inside data/raw recursively.
+    Extract all ZIP files inside data/raw recursively.
+    Skip extraction if the dataset is already extracted.
     """
 
     zip_files = list(RAW_DATA.rglob("*.zip"))
 
     if not zip_files:
-        print("No ZIP files found.")
+        logger.info("No ZIP files found.")
         return
 
-    print(f"Found {len(zip_files)} ZIP file(s).\n")
+    logger.info(f"Found {len(zip_files)} ZIP file(s).")
 
     for zip_file in zip_files:
 
         extract_to = zip_file.parent / zip_file.stem
 
-        print(f"Extracting: {zip_file.name}")
+        # Skip extraction if already extracted
+        if extract_to.exists() and any(extract_to.iterdir()):
+            logger.info(f"Dataset already extracted. Skipping: {zip_file.name}")
+            continue
 
-        extract_to.mkdir(exist_ok=True)
+        logger.info(f"Extracting: {zip_file.name}")
+
+        extract_to.mkdir(parents=True, exist_ok=True)
 
         with zipfile.ZipFile(zip_file, "r") as z:
             z.extractall(extract_to)
 
-        print(f"Extracted to: {extract_to}\n")
+        logger.info(f"Extracted to: {extract_to}")
 
 
 if __name__ == "__main__":

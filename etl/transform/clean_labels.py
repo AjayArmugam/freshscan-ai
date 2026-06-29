@@ -1,6 +1,8 @@
 from pathlib import Path
 import shutil
 
+from etl.logger import logger
+
 BASE_DIR = Path(__file__).resolve().parents[2]
 RAW_DATA = BASE_DIR / "data" / "raw"
 
@@ -28,9 +30,9 @@ def merge_folders(source: Path, destination: Path):
 
 def clean_labels():
 
-    print("=" * 60)
-    print("FreshScan AI Label Cleaner")
-    print("=" * 60)
+    logger.info("=" * 60)
+    logger.info("FreshScan AI Label Cleaner")
+    logger.info("=" * 60)
 
     renamed = 0
 
@@ -46,15 +48,15 @@ def clean_labels():
             new_name = CLASS_MAPPING[folder_name]
             destination = folder.parent / new_name
 
-            print(f"\nFixing: {folder.name} → {new_name}")
+            logger.info(f"\nFixing: {folder.name} -> {new_name}")
 
             merge_folders(folder, destination)
 
             renamed += 1
 
-    print("\n--------------------------------------")
-    print(f"Folders Fixed : {renamed}")
-    print("--------------------------------------")
+    logger.info("\n--------------------------------------")
+    logger.info(f"Folders Fixed : {renamed}")
+    logger.info("--------------------------------------")
 
 
 if __name__ == "__main__":

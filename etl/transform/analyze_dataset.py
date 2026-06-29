@@ -4,6 +4,8 @@ from PIL import Image
 import pandas as pd
 import json
 
+from etl.logger import logger
+
 BASE_DIR = Path(__file__).resolve().parents[2]
 
 RAW_DATA = BASE_DIR / "data" / "raw"
@@ -21,11 +23,11 @@ def analyze_dataset():
     for ext in VALID_EXTENSIONS:
         image_files.extend(RAW_DATA.rglob(f"*{ext}"))
 
-    print("=" * 60)
-    print("FreshScan AI Dataset Analyzer")
-    print("=" * 60)
+    logger.info("=" * 60)
+    logger.info("FreshScan AI Dataset Analyzer")
+    logger.info("=" * 60)
 
-    print(f"Total Images : {len(image_files)}")
+    logger.info(f"Total Images : {len(image_files)}")
 
     class_counter = Counter()
 
@@ -45,12 +47,12 @@ def analyze_dataset():
         except:
             pass
 
-    print(f"Total Classes : {len(class_counter)}")
+    logger.info(f"Total Classes : {len(class_counter)}")
 
-    print("\nClass Distribution\n")
+    logger.info("\nClass Distribution\n")
 
     for cls, count in sorted(class_counter.items()):
-        print(f"{cls:<25} {count}")
+        logger.info(f"{cls:<25} {count}")
 
     report = {
         "total_images": len(image_files),
@@ -76,7 +78,7 @@ def analyze_dataset():
         index=False
     )
 
-    print("\nMetadata generated successfully.")
+    logger.info("\nMetadata generated successfully.")
 
 
 if __name__ == "__main__":

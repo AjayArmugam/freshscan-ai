@@ -1,6 +1,8 @@
 from pathlib import Path
 from PIL import Image
 
+from etl.logger import logger
+
 BASE_DIR = Path(__file__).resolve().parents[2]
 RAW_DATA = BASE_DIR / "data" / "raw"
 
@@ -20,11 +22,11 @@ def validate_dataset():
     for ext in VALID_EXTENSIONS:
         image_files.extend(RAW_DATA.rglob(f"*{ext}"))
 
-    print("=" * 60)
-    print("FreshScan AI Image Validator")
-    print("=" * 60)
+    logger.info("=" * 60)
+    logger.info("FreshScan AI Image Validator")
+    logger.info("=" * 60)
 
-    print(f"Found {len(image_files)} images\n")
+    logger.info(f"Found {len(image_files)} images\n")
 
     for image_path in image_files:
 
@@ -38,12 +40,12 @@ def validate_dataset():
 
             corrupted_images += 1
 
-            print(f"Corrupted: {image_path}")
+            logger.info(f"Corrupted: {image_path}")
 
-    print("\nValidation Complete")
-    print("-" * 40)
-    print(f"Valid Images     : {valid_images}")
-    print(f"Corrupted Images : {corrupted_images}")
+    logger.info("\nValidation Complete")
+    logger.info("-" * 40)
+    logger.info(f"Valid Images     : {valid_images}")
+    logger.info(f"Corrupted Images : {corrupted_images}")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 from pathlib import Path
 from PIL import Image
 
+from etl.logger import logger
+
 BASE_DIR = Path(__file__).resolve().parents[2]
 
 RAW_DATA = BASE_DIR / "data" / "raw"
@@ -15,16 +17,16 @@ processed_count = 0
 def preprocess_dataset():
     global processed_count
 
-    print("=" * 60)
-    print("FreshScan AI Image Preprocessor")
-    print("=" * 60)
+    logger.info("=" * 60)
+    logger.info("FreshScan AI Image Preprocessor")
+    logger.info("=" * 60)
 
     image_files = []
 
     for ext in VALID_EXTENSIONS:
         image_files.extend(RAW_DATA.rglob(f"*{ext}"))
 
-    print(f"Found {len(image_files)} images.\n")
+    logger.info(f"Found {len(image_files)} images.\n")
 
     for image_path in image_files:
 
@@ -46,13 +48,13 @@ def preprocess_dataset():
                 processed_count += 1
 
         except Exception as e:
-            print(f"Failed: {image_path}")
-            print(e)
+            logger.error(f"Failed: {image_path}")
+            logger.error(e)
 
-    print("\n------------------------------------------")
-    print(f"Images Processed : {processed_count}")
-    print(f"Saved to         : {PROCESSED_DATA}")
-    print("------------------------------------------")
+    logger.info("\n------------------------------------------")
+    logger.info(f"Images Processed : {processed_count}")
+    logger.info(f"Saved to         : {PROCESSED_DATA}")
+    logger.info("------------------------------------------")
 
 
 if __name__ == "__main__":
