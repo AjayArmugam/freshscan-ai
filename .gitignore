@@ -1,32 +1,35 @@
-# Virtual Environment
-.venv/
-venv/
+# ===========================
+# Dataset
+# ===========================
+data/raw/
+data/processed/
+data/interim/
 
-# Python
+# Generated metadata
+data/metadata/*.csv
+data/metadata/*.json
+
+# Split datasets
+data/split/
+
+# Model files
+*.pth
+*.pt
+*.onnx
+*.ckpt
+
+# MLflow
+mlruns/
+
+# DVC cache
+.dvc/cache/
+
+# Python cache
+*.pyc
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.so
-
-# Environment
-.env
-
-# VS Code
-.vscode/
-
-# Pytest
-.pytest_cache/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# OS
-.DS_Store
-Thumbs.db
-
 # Logs
-*.log
-
-# Data
-data/raw/
+logs/
