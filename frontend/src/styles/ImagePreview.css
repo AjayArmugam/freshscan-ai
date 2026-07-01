@@ -1,0 +1,43 @@
+.preview-card{
+
+    background:#1f2937;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+}
+
+.preview-card h2{
+
+    margin-bottom:20px;
+}
+
+.preview-card img{
+
+    width:100%;
+
+    max-width:320px;
+
+    border-radius:15px;
+
+    object-fit:cover;
+}
+
+.empty-preview{
+
+    height:320px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:2px dashed #475569;
+
+    border-radius:15px;
+
+    color:#94a3b8;
+}

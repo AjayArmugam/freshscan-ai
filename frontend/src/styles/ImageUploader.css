@@ -1,0 +1,60 @@
+.upload-card{
+    display:flex;
+    justify-content:center;
+    margin-bottom:35px;
+}
+
+.upload-area{
+
+    width:100%;
+    max-width:700px;
+
+    border:2px dashed #4b5563;
+
+    border-radius:20px;
+
+    padding:45px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    background:#1f2937;
+}
+
+.upload-area:hover{
+
+    border-color:#22c55e;
+
+    background:#243244;
+}
+
+.upload-icon{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+}
+
+.upload-area h2{
+
+    margin-bottom:10px;
+
+    color:white;
+}
+
+.upload-area p{
+
+    color:#cbd5e1;
+
+    margin-bottom:10px;
+}
+
+.upload-area span{
+
+    color:#94a3b8;
+
+    font-size:14px;
+}
